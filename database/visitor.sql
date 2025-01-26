@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `visitors` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `visitors`;
 -- MySQL dump 10.13  Distrib 8.0.40, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: visitors
@@ -55,6 +57,60 @@ LOCK TABLES `records` WRITE;
 /*!40000 ALTER TABLE `records` DISABLE KEYS */;
 /*!40000 ALTER TABLE `records` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `UserName` varchar(100) DEFAULT NULL,
+  `UserID` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `role` varchar(50) DEFAULT 'user',
+  PRIMARY KEY (`UserID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES ('Bhupesh','admin','$2a$10$CXEBaaxdOI4zlRiyX0KBPeVilCH3bTypZFr7SwO3nsNy5Eqjy.rpG','2025-01-24 09:17:17','admin'),('himanshu','user1','$2a$10$CPo1GqV9b/9OLQVSHaKR6OrUkyuLhX8oh8LQkabT53Q5bBXdYjd/.','2025-01-25 10:18:03','user'),('Archana','user2','$2a$10$FacGxRC.ngWgi5CYxxNr.u51nEF4coHXC1tJy66i03eMBL8bVvrZe','2025-01-25 10:28:30','user'),('Aashvi','user3','$2a$10$aouGCjUDzo7tmOFRtio6WeCGyodRBvLX/q3/KurloFigIsZywSVGe','2025-01-25 10:29:06','user');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `visiting_cards`
+--
+
+DROP TABLE IF EXISTS `visiting_cards`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `visiting_cards` (
+  `Id` int NOT NULL AUTO_INCREMENT,
+  `VisitorName` varchar(200) DEFAULT NULL,
+  `VisitingCard` varchar(500) DEFAULT NULL,
+  `Date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `UserId` varchar(30) DEFAULT NULL,
+  `Updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `visiting_cards`
+--
+
+LOCK TABLES `visiting_cards` WRITE;
+/*!40000 ALTER TABLE `visiting_cards` DISABLE KEYS */;
+/*!40000 ALTER TABLE `visiting_cards` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -65,4 +121,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-26 17:09:57
+-- Dump completed on 2025-01-26 17:34:59
