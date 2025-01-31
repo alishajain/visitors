@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setUserId } from '../Redux/userSlice'; 
+import { setUserId, setRole } from '../Redux/userSlice'; 
 import { loginUser } from '../API/UserApi';
 import "../Styles/Login.css";
 
@@ -12,6 +12,9 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  // Get role from Redux store
+  const role = useSelector((state) => state.user.role);
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -30,6 +33,7 @@ const Login = () => {
 
       if (data.success) {
         dispatch(setUserId(userId)); // Dispatching the action to store userId
+        dispatch(setRole(data.role)); // Set user role in Redux store
         setMessage(data.message);
         navigate('/home'); // Navigate to home on success
       } else {
@@ -46,6 +50,22 @@ const Login = () => {
   // Navigate to signup page
   const handleSignupRedirect = () => {
     navigate('/signup');
+  };
+
+  // Conditional rendering based on user role
+  const renderAdminActions = () => {
+    if (role === 'admin') {
+      return (
+        <div className="admin-actions">
+          <button onClick={() => navigate('/update')} className="admin-button">
+            Update Record
+          </button>
+          <button onClick={() => navigate('/delete')} className="admin-button">
+            Delete Record
+          </button>
+        </div>
+      );
+    }
   };
 
   return (
@@ -81,6 +101,9 @@ const Login = () => {
         <button onClick={handleSignupRedirect} className="login-signup-button">
           Don't have an account? Sign Up
         </button>
+
+        {/* Conditionally render admin actions */}
+        {renderAdminActions()}
       </div>
     </div>
   );

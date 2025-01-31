@@ -32,6 +32,7 @@ export const userSlice = createSlice({
   name: 'user',
   initialState: {
     userId: '',
+    role: '', // New state to store the role (user or admin)
     loading: false,
     error: '',
   },
@@ -40,9 +41,14 @@ export const userSlice = createSlice({
     setUserId: (state, action) => {
       state.userId = action.payload;
     },
-    // Action to clear userId (for logout functionality)
+    // Action to set role
+    setRole: (state, action) => {
+      state.role = action.payload;
+    },
+    // Action to clear userId and role (for logout functionality)
     logout: (state) => {
       state.userId = '';
+      state.role = ''; // Clear role on logout
     },
     setError: (state, action) => {
       state.error = action.payload;
@@ -61,6 +67,7 @@ export const userSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.loading = false;
         state.userId = action.payload.UserID;
+        state.role = action.payload.role || 'user'; // Set role on successful login
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
@@ -75,6 +82,7 @@ export const userSlice = createSlice({
       .addCase(signup.fulfilled, (state, action) => {
         state.loading = false;
         state.userId = action.payload.UserID;
+        state.role = action.payload.role || 'user'; // Set role on successful signup
       })
       .addCase(signup.rejected, (state, action) => {
         state.loading = false;
@@ -84,7 +92,7 @@ export const userSlice = createSlice({
 });
 
 // Export the action creators
-export const { setUserId, logout, setError, clearError } = userSlice.actions;
+export const { setUserId, setRole, logout, setError, clearError } = userSlice.actions;
 
 // Export the reducer to be included in the store
 export default userSlice.reducer;

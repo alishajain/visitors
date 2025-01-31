@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');  // Import jsonwebtoken
 const db = require("../db/database");
 
-const JWT_SECRET = 'your_jwt_secret_key';  // Secret key for signing the JWT (keep this safe)
+const JWT_SECRET = '8200dd45dc0960bc87b98c0b6f86948cdb1defc5d18b6416c4aae12e31f49ace1311597e3a4c1c57ff5c6a113cfbfe90dfac4d2eed036e379bbed9a157257f24';
 
 // Hash the password before saving it
 const hashPassword = async (password) => {
@@ -36,11 +36,11 @@ const loginUser = async (req, res) => {
     }
 
     const token = jwt.sign(
-      { UserID: user[0].UserID, role: user[0].role || "user" },
+      { UserID: user[0].UserID, role: user[0].role },
       JWT_SECRET
     );
 
-    res.status(200).json({ success: true, message: "Login successful.", token });
+    res.status(200).json({ success: true, message: "Login successful.", token, role: user[0].role});
   } catch (err) {
     console.error("Error while logging in:", err);
     res.status(500).json({ success: false, message: "Server error while logging in." });

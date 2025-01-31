@@ -32,9 +32,17 @@ export const loginUser = async (credentials) => {
   try {
     const response = await axios.post(`${API_URL}/login`, credentials);
     
-    // Store the JWT token in localStorage or sessionStorage
-    localStorage.setItem('token', response.data.token);
+    // Assuming the backend now returns both token and role
+    const { token, role } = response.data;
+    
+    console.log(token);
+    console.log(role);
 
+    if (token && role) {
+      localStorage.setItem('token', token); // Store token
+      localStorage.setItem('role', role);   // Store role
+    }
+    
     return response.data;
   } catch (error) {
     console.error("Error logging in user:", error.response ? error.response.data : error.message);

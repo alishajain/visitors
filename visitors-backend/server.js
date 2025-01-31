@@ -1,12 +1,12 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const path = require('path');
-const tableRoutes = require('./routes/tableRoutes.js');
+const tableRoutes = require('./routes/tableRoutes');
 const errorHandler = require('./middleware/errorHandler');
+const path = require('path');
 
 const app = express();
-const PORT = 5000;
+const PORT = 5001;
 
 // Middleware
 app.use(cors());
@@ -30,3 +30,4 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
