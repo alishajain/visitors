@@ -10,7 +10,7 @@ import AddCard from "./Components/AddCard";
 import VisitingCardsList from "./Components/VisitingCardsList";
 
 const App = () => {
-  return (
+   return (
     <Router>
       <div>
         <Routes>

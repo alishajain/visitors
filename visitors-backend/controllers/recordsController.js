@@ -19,7 +19,8 @@ const addRecord = async (req, res) => {
     Remarks,
     Source,
     Yarn,
-    Fabric, // Ensure this field is included
+    Fabric,
+    SalesRepresentative,
   } = req.body;
 
   // Basic validation: Ensure all required fields are provided
@@ -29,7 +30,8 @@ const addRecord = async (req, res) => {
     !Email ||
     !MobileNo ||
     !UserId ||
-    !Source
+    !Source ||
+    !SalesRepresentative
   ) {
     return res
       .status(400)
@@ -51,8 +53,8 @@ const addRecord = async (req, res) => {
     // SQL query to insert the record into the database
     const query = `
       INSERT INTO records 
-      (CustomerName, Designation, CompanyName, Country, City, MobileNo, PhoneNo, Email, Machines, Guage, BookingDate, DeliveryDate, UserId, Remarks, Source, Yarn, Fabric)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      (CustomerName, Designation, CompanyName, Country, City, MobileNo, PhoneNo, Email, Machines, Guage, BookingDate, DeliveryDate, UserId, Remarks, Source, Yarn, Fabric, SalesRepresentative)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
 
     // Execute the query with the provided data
@@ -74,6 +76,7 @@ const addRecord = async (req, res) => {
       Source, // Include Source in the query
       Yarn, // Include Yarn in the query
       Fabric, // Include Fabric in the query (This was missing before)
+      SalesRepresentative,
     ]);
 
     res.status(201).json({
@@ -156,6 +159,7 @@ const updateRecord = async (req, res) => {
     Source,
     Yarn,
     Fabric,
+    SalesRepresentative
   } = req.body;
 
   // Basic validation: Ensure that required fields are provided
@@ -165,7 +169,8 @@ const updateRecord = async (req, res) => {
     !CompanyName ||
     !Email ||
     !MobileNo ||
-    !Source 
+    !Source ||
+    !SalesRepresentative
   ) {
     return res
       .status(400)
@@ -183,7 +188,7 @@ const updateRecord = async (req, res) => {
   try {
     const query = `
       UPDATE records 
-      SET CustomerName = ?, Designation = ?, CompanyName = ?, Country = ?, City = ?, MobileNo = ?, PhoneNo = ?, Email = ?, Machines = ?, Guage = ?, BookingDate = ?, DeliveryDate = ?, UserId = ?, Remarks = ?, Source = ?, Yarn = ?, Fabric = ?, Updated_at = CURRENT_TIMESTAMP
+      SET CustomerName = ?, Designation = ?, CompanyName = ?, Country = ?, City = ?, MobileNo = ?, PhoneNo = ?, Email = ?, Machines = ?, Guage = ?, BookingDate = ?, DeliveryDate = ?, UserId = ?, Remarks = ?, Source = ?, Yarn = ?, Fabric = ?, SalesRepresentative = ?, Updated_at = CURRENT_TIMESTAMP
       WHERE Id = ?
     `;
 
@@ -204,14 +209,16 @@ const updateRecord = async (req, res) => {
       UserId,
       Remarks,
       Source,
-      Yarn, // Include Yarn in the query
-      Fabric, // Include Fabric in the query
+      Yarn,
+      Fabric,
+      SalesRepresentative,
       Id,
     ]);
 
     if (results.affectedRows > 0) {
       res.status(200).json({
         success: true,
+        
         message: "Record updated successfully",
       });
     } else {

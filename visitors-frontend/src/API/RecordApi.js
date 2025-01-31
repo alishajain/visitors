@@ -6,6 +6,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 // Function to add a new record
 export const addRecord = async (recordData) => {
   try {
+    console.log(recordData);
     const response = await axios.post(`${API_URL}/add-record`, recordData);
     return response.data;
   } catch (error) {

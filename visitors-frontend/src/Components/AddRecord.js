@@ -22,6 +22,7 @@ const AddRecord = () => {
     BookingDate: "",
     DeliveryDate: "",
     Remarks: "",
+    SalesRepresentative: "",
     Source: "", // Added Source field
     Yarn: "",    // Added Yarn field
     Fabric: "",   // Added Fabric field
@@ -177,8 +178,25 @@ const AddRecord = () => {
               </div>
             </div>
 
-            {/* Yarn and Fabric Fields */}
+            <div className="modal-row">
+              <div
+                className={`modal-column ${errors.SalesRepresentative ? "error" : ""}`}
+              >
+                <label>Sales Representative</label>
+                <input
+                  type="text"
+                  name="SalesRepresentative"
+                  value={formData.SalesRepresentative}
+                  onChange={handleChange}
+                  required
+                />
+                {errors.SalesRepresentative && (
+                  <p className="error-message">{errors.SalesRepresentative}</p>
+                )}
+              </div>
+            </div>
 
+            {/* Yarn and Fabric Fields */}
             <div className="modal-row">
               <div
                 className={`modal-column ${errors.CustomerName ? "error" : ""}`}
