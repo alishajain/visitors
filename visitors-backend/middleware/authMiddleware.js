@@ -7,7 +7,7 @@ const verifyAdminRole = (req, res, next) => {
       return res.status(403).json({ success: false, message: 'Access denied. Admins only.' });
   }
 
-  next(); // Continue to the next middleware/route handler
+  next();
 };
 
 module.exports = { verifyAdminRole };

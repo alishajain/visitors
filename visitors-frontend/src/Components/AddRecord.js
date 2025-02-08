@@ -76,7 +76,7 @@ const AddRecord = () => {
 
     // If there are any errors, set them to state
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0; // Return true if no errors
+    return Object.keys(newErrors).length === 0; 
   };
 
   // Handle form submission
@@ -85,7 +85,7 @@ const AddRecord = () => {
 
     // Perform form validation
     if (!validateForm()) {
-      return; // If validation fails, do not submit the form
+      return;
     }
 
     // Prepare form data for submission, setting Yarn and Fabric to null if empty
