@@ -1,96 +1,119 @@
+/* Updated CSS for layout and Summary column width */
 .SearchRecord-container {
-    padding: 20px;
-    font-family: Arial, sans-serif;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ShowDetails-container {
+  display: flex;
+  gap: 10px; /* Reduced gap between components */
+  width: 100%;
+}
+
+.ShowRecord-container {
+  width: 40%;
+}
+
+.ShowCallSummary-container {
+  width: 60%;
 }
 
 h1 {
-    text-align: center;
-    color: #333;
+  text-align: center;
+  color: #333;
 }
 
 .SearchRecord-table-container {
-    margin-top: 20px;
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
+  margin-top: 20px;
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .SearchRecord-table-container table {
-    width: 100%;
-    border: 1px solid #ddd;
-    table-layout: fixed;
+  width: 100%;
+  border: 1px solid #ddd;
+  table-layout: fixed;
 }
 
 .SearchRecord-table-container th,
 .SearchRecord-table-container td {
-    padding: 10px;
-    text-align: left;
-    border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
 }
 
 .SearchRecord-table-container th {
-    background-color: #f4f4f4;
-    font-weight: bold;
+  background-color: #f4f4f4;
+  font-weight: bold;
 }
 
 .SearchRecord-table-container td {
-    background-color: #fafafa;
+  background-color: #fafafa;
 }
 
 .SearchRecord-table-container tr:nth-child(even) {
-    background-color: #f9f9f9;
+  background-color: #f9f9f9;
 }
 
 .SearchRecord-table-container tr:hover {
-    background-color: #e0f7fa;
+  background-color: #e0f7fa;
 }
 
 strong {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .SearchRecord-buttons {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    max-width: 500px; /* Increased max width for more spacing between buttons */
-    margin: 20px auto;
-    gap: 10px; /* Added gap between buttons */
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 500px;
+  margin: 20px auto;
+  gap: 10px;
 }
 
 .SearchRecord-buttons button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    background-color: #008080;
-    color: white;
-    border-radius: 5px;
-    width: 100%; /* Optional: makes buttons take equal width */
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: #008080;
+  color: white;
+  border-radius: 5px;
+  width: 100%;
 }
 
 .SearchRecord-buttons button:hover {
-    background-color: #006666;
+  background-color: #006666;
 }
 
 .SearchRecord-buttons button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
+  background-color: #cccccc;
+  cursor: not-allowed;
 }
 
 /* Ensure the Update button in UpdateRecord is also styled like the other buttons */
 .UpdateRecord-buttons button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    background-color: #008080;
-    color: white;
-    border-radius: 5px;
-    width: 100%; /* Optional: makes buttons take equal width */
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: #008080;
+  color: white;
+  border-radius: 5px;
+  width: 100%;
 }
 
 .UpdateRecord-buttons button:hover {
-    background-color: #006666;
+  background-color: #006666;
+}
+
+/* Adjust Summary column width in ShowCallSummary */
+.ShowCallSummary-container table th:nth-child(2),
+.ShowCallSummary-container table td:nth-child(2) {
+  width: 60%;
 }

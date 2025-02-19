@@ -34,13 +34,10 @@ export const loginUser = async (credentials) => {
     
     // Assuming the backend now returns both token and role
     const { token, role } = response.data;
-    
-    console.log(token);
-    console.log(role);
 
     if (token && role) {
-      localStorage.setItem('token', token); // Store token
-      localStorage.setItem('role', role);   // Store role
+      localStorage.setItem('token', token);
+      localStorage.setItem('role', role);
     }
     
     return response.data;

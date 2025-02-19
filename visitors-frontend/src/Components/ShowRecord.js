@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { searchRecordById, deleteRecord } from "../API/RecordApi";
-import UpdateRecord from "./UpdateRecord"; // Assuming UpdateRecord component exists
-import "../Styles/SearchRecord.css";
+import UpdateRecord from "./UpdateRecord";
 
-const SearchRecord = () => {
+const ShowRecord = () => {
   const location = useLocation();
   const { id } = location.state || {};
   const navigate = useNavigate();
@@ -201,4 +200,4 @@ const SearchRecord = () => {
   );
 };
 
-export default SearchRecord;
+export default ShowRecord;

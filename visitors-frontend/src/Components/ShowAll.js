@@ -62,7 +62,7 @@ const ShowAll = () => {
 
   // Navigate to /search-records when "Show Details" button is clicked
   const handleShowDetails = (id) => {
-    navigate(`/search-records/${id}`, { state: { id } });
+    navigate(`/show-details/${id}`, { state: { id } });
   };
   
 
